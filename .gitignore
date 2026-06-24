@@ -1,5 +1,4 @@
 # Midtrans credentials - JANGAN pernah di-commit!
-config_midtrans.php
 
 # Composer
 vendor/
