@@ -1,0 +1,30 @@
+# Midtrans credentials - JANGAN pernah di-commit!
+config_midtrans.php
+
+# Composer
+vendor/
+composer.lock
+
+# Environment
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+ngrok.exe
+ngrok
+
+# Upload
+assets/img/uploads/

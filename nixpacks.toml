@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["php81", "php81Packages.composer", "php81Extensions.mysqli", "php81Extensions.mbstring", "php81Extensions.curl", "php81Extensions.openssl", "php81Extensions.json"]
+
+[phases.install]
+cmds = ["composer install --no-dev --optimize-autoloader"]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t . router.php"
