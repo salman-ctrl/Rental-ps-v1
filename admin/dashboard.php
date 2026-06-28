@@ -624,15 +624,6 @@ include '../includes/header.php';
                 <div class="dash-stat-label">Pending Payment</div>
             </div>
 
-            <div class="dash-stat <?php echo $stats['pending_refunds'] > 0 ? 'alert-stat' : ''; ?>">
-                <?php if ($stats['pending_refunds'] > 0): ?>
-                    <div class="dash-stat-dot"></div>
-                <?php endif; ?>
-                <div class="dash-stat-icon red"><i data-lucide="receipt"></i></div>
-                <div class="dash-stat-num"><?php echo $stats['pending_refunds']; ?></div>
-                <div class="dash-stat-label">Refund Pending</div>
-            </div>
-
             <div class="dash-stat">
                 <div class="dash-stat-icon indigo"><i data-lucide="swords"></i></div>
                 <div class="dash-stat-num"><?php echo $stats['duels_week']; ?></div>
