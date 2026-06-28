@@ -746,10 +746,6 @@ include '../includes/header.php';
                 <div class="mgmt-nav-icon"><i data-lucide="trophy"></i></div>
                 Tournament
             </a>
-            <a href="manage_refunds.php" class="mgmt-nav-btn">
-                <div class="mgmt-nav-icon"><i data-lucide="receipt"></i></div>
-                Refund
-            </a>
             <a href="reports.php" class="mgmt-nav-btn">
                 <div class="mgmt-nav-icon"><i data-lucide="bar-chart-2"></i></div>
                 Laporan

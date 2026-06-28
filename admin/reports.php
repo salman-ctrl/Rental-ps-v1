@@ -669,10 +669,6 @@ include '../includes/header.php';
                 <div class="dash-action-icon"><i data-lucide="trophy"></i></div>
                 Tournament
             </a>
-            <a href="manage_refunds.php" class="dash-action-btn">
-                <div class="dash-action-icon"><i data-lucide="receipt"></i></div>
-                Refund
-            </a>
         </div>
 
         <!-- Period Filter -->
@@ -794,7 +790,8 @@ include '../includes/header.php';
                                         <?php echo substr($row['end_time'], 0, 5); ?>
                                     </td>
                                     <td style="font-weight:600;">Rp
-                                        <?php echo number_format($row['total_price'], 0, ',', '.'); ?></td>
+                                        <?php echo number_format($row['total_price'], 0, ',', '.'); ?>
+                                    </td>
                                     <td><span
                                             class="pay-badge <?php echo $payClass; ?>"><?php echo ucfirst($row['payment_status']); ?></span>
                                     </td>

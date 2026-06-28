@@ -805,10 +805,7 @@ include '../includes/header.php';
                 <div class="usr-nav-icon"><i data-lucide="trophy"></i></div>
                 Tournament
             </a>
-            <a href="manage_refunds.php" class="usr-nav-btn">
-                <div class="usr-nav-icon"><i data-lucide="receipt"></i></div>
-                Refund
-            </a>
+
             <a href="reports.php" class="usr-nav-btn">
                 <div class="usr-nav-icon"><i data-lucide="bar-chart-2"></i></div>
                 Laporan
