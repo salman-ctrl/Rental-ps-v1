@@ -2,10 +2,12 @@
 require_once '../config.php';
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'operator'])) {
     header('Location: ../login.php');
     exit;
 }
+
+$isOperator = $_SESSION['role'] === 'operator';
 
 $stats = [];
 $r = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role='customer' AND is_active=1");
@@ -572,12 +574,12 @@ include '../includes/header.php';
             </div>
             <div class="dash-admin-badge">
                 <i data-lucide="shield-check"></i>
-                Administrator
+                <?php echo $isOperator ? 'Operator' : 'Administrator'; ?>
             </div>
         </div>
 
         <!-- Alert: Pending Refunds -->
-        <?php if ($stats['pending_refunds'] > 0): ?>
+        <?php if (!$isOperator && $stats['pending_refunds'] > 0): ?>
             <div class="dash-alert">
                 <i data-lucide="alert-triangle"></i>
                 <span>
@@ -624,6 +626,15 @@ include '../includes/header.php';
                 <div class="dash-stat-label">Pending Payment</div>
             </div>
 
+            <div class="dash-stat <?php echo $stats['pending_refunds'] > 0 ? 'alert-stat' : ''; ?>">
+                <?php if ($stats['pending_refunds'] > 0): ?>
+                    <div class="dash-stat-dot"></div>
+                <?php endif; ?>
+                <div class="dash-stat-icon red"><i data-lucide="receipt"></i></div>
+                <div class="dash-stat-num"><?php echo $stats['pending_refunds']; ?></div>
+                <div class="dash-stat-label">Refund Pending</div>
+            </div>
+
             <div class="dash-stat">
                 <div class="dash-stat-icon indigo"><i data-lucide="swords"></i></div>
                 <div class="dash-stat-num"><?php echo $stats['duels_week']; ?></div>
@@ -644,22 +655,28 @@ include '../includes/header.php';
                 <div class="dash-action-icon"><i data-lucide="calendar-check"></i></div>
                 Kelola Booking
             </a>
-            <a href="manage_users.php" class="dash-action-btn">
-                <div class="dash-action-icon"><i data-lucide="users"></i></div>
-                Kelola Users
-            </a>
             <a href="manage_playstation.php" class="dash-action-btn">
                 <div class="dash-action-icon"><i data-lucide="monitor"></i></div>
                 Kelola PS
             </a>
-            <a href="manage_tournaments.php" class="dash-action-btn">
-                <div class="dash-action-icon"><i data-lucide="trophy"></i></div>
-                Tournament
-            </a>
-            <a href="reports.php" class="dash-action-btn">
-                <div class="dash-action-icon"><i data-lucide="bar-chart-2"></i></div>
-                Laporan
-            </a>
+            <?php if (!$isOperator): ?>
+                <a href="manage_users.php" class="dash-action-btn">
+                    <div class="dash-action-icon"><i data-lucide="users"></i></div>
+                    Kelola Users
+                </a>
+                <a href="manage_tournaments.php" class="dash-action-btn">
+                    <div class="dash-action-icon"><i data-lucide="trophy"></i></div>
+                    Tournament
+                </a>
+                <a href="manage_refunds.php" class="dash-action-btn">
+                    <div class="dash-action-icon"><i data-lucide="receipt"></i></div>
+                    Refund
+                </a>
+                <a href="reports.php" class="dash-action-btn">
+                    <div class="dash-action-icon"><i data-lucide="bar-chart-2"></i></div>
+                    Laporan
+                </a>
+            <?php endif; ?>
         </div>
 
         <!-- Recent Bookings -->

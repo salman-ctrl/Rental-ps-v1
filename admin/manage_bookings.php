@@ -2,7 +2,7 @@
 require_once '../config.php';
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'operator'])) {
     header('Location: ../login.php');
     exit;
 }
@@ -745,6 +745,10 @@ include '../includes/header.php';
             <a href="manage_tournaments.php" class="mgmt-nav-btn">
                 <div class="mgmt-nav-icon"><i data-lucide="trophy"></i></div>
                 Tournament
+            </a>
+            <a href="manage_refunds.php" class="mgmt-nav-btn">
+                <div class="mgmt-nav-icon"><i data-lucide="receipt"></i></div>
+                Refund
             </a>
             <a href="reports.php" class="mgmt-nav-btn">
                 <div class="mgmt-nav-icon"><i data-lucide="bar-chart-2"></i></div>

@@ -119,7 +119,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <!-- Divider -->
                     <li class="nav-divider"></li>
 
-                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+                    <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['admin', 'operator'])): ?>
                         <li>
                             <a href="<?php echo base_url('admin/dashboard.php'); ?>"
                                 class="nav-link nav-link--admin <?php echo $is_active('dashboard.php'); ?>">
