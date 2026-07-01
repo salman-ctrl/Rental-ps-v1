@@ -565,7 +565,7 @@ include '../includes/header.php';
             <div>
                 <h1 class="dash-title">
                     <i data-lucide="layout-dashboard"></i>
-                    Dashboard Admin
+                    <?php echo $isOperator ? 'Dashboard Operator' : 'Dashboard Admin'; ?>
                 </h1>
                 <p class="dash-subtitle">
                     <i data-lucide="clock"></i>
